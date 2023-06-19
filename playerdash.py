@@ -188,26 +188,33 @@ with row2_2:
     )
 
     fig, ax = baker.make_pizza(
-        values,              # list of values
-        figsize=(7, 5),      # adjust figsize according to your need
-        param_location=110,  # where the parameters will be added
-        kwargs_slices=dict(
-            facecolor="#6CABDD", edgecolor="#000000",
-            zorder=2, linewidth=1
-        ),                   # values to be used when plotting slices
-        kwargs_params=dict(
-            color="#000000", fontsize=12,
-            va="center", alpha=.5
-        ),                   # values to be used when adding parameter
-        kwargs_values=dict(
-            color="#000000", fontsize=12,
-            zorder=3,
-            bbox=dict(
-                edgecolor="#000000", facecolor="#6CABDD",
-                boxstyle="round,pad=0.2", lw=1
-            )
-        )                    # values to be used when adding parameter-values
+    values,
+    figsize=(7, 5),
+    param_location=110,
+    kwargs_slices=dict(
+        facecolor="#6CABDD",
+        edgecolor="#000000",
+        zorder=2,
+        linewidth=1
+    ),
+    kwargs_params=dict(
+        color="#000000",
+        fontsize=12,
+        va="center",
+        alpha=.5
+    ),
+    kwargs_values=dict(
+        color="#000000",
+        fontsize=12,
+        zorder=3,
+        bbox=dict(
+            edgecolor="#000000",
+            facecolor="#6CABDD",
+            boxstyle="round,pad=0.2",
+            lw=1
+        )
     )
+)
 
     # add title
     fig.text(
