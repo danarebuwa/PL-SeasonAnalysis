@@ -166,8 +166,12 @@ with row2_2:
     players = players[3:]
     #players
     values = []
-    for x in range(len(params)):   
-        values.append(math.floor(stats.percentileofscore(player_df[params[x]],players[x]))) 
+    for x in range(len(params)):
+    percentile_score = stats.percentileofscore(player_df[params[x]],players[x])
+    if math.isnan(percentile_score):
+        values.append(None)
+    else:
+        values.append(math.floor(percentile_score)) 
 
     round(stats.percentileofscore(player_df[params[0]],players[0]))
     for n,i in enumerate(values):
