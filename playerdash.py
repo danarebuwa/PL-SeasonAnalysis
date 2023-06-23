@@ -140,63 +140,58 @@ with row2_1, _lock:
     st.write(f'Age: {player2["Age"].iloc[0]}')
 
 #in the second row show player heatmap
+# ...
+
 with row2_2:
     st.write('Player Performance Radar')
-    #st.image('sakaavgmap.png', width=400)
-    #create a radar chart of players stats
-    #create a dataframe of the selected player
-    #player_df = pl_df[pl_df['Player'] == player]
-    
-    #create a dataframe that shows all the players with the same position as player
+
     player_df = pi_df[pi_df['Pos'] == player2['Pos'].iloc[0]]
-    #player_df 
 
     player3 = player_df[player_df['Player'] == player]
-    params = list(player_df.columns)
-    #params 
 
+    params = list(player_df.columns)
     params = params[2:]
-    #params
-    
 
     players = player_df.loc[player_df['Player']== player].reset_index()
     players = list(players.loc[0])
-    #players
-
     players = players[3:]
-    #players
+
     values = []
     for x in range(len(params)):
-        percentile_score = stats.percentileofscore(player_df[params[x]],players[x])
-        if math.isnan(percentile_score):
-            values.append(None)
+        if players[x] is not None:
+            percentile_score = stats.percentileofscore(player_df[params[x]],players[x])
+            if math.isnan(percentile_score):
+                values.append(0)
+            else:
+                values.append(math.floor(percentile_score))
         else:
-            values.append(math.floor(percentile_score)) 
+            values.append(0)  # Replace None with 0. Adjust as needed for your context.
 
-    round(stats.percentileofscore(player_df[params[0]],players[0]))
     for n,i in enumerate(values):
         if i == 100:
             values[n] = 99
 
     baker = PyPizza(
-        params=params,                  # list of parameters
-        straight_line_color="#000000",  # color for straight lines
-        straight_line_lw=1,             # linewidth for straight lines
-        last_circle_lw=1,               # linewidth of last circle
-        other_circle_lw=1,              # linewidth for other circles
-        other_circle_ls="-."            # linestyle for other circles
+        params=params,
+        straight_line_color="#000000",
+        straight_line_lw=1,
+        last_circle_lw=1,
+        other_circle_lw=1,
+        other_circle_ls="-."
     )
 
     fig, ax = baker.make_pizza(
-    values,
-    figsize=(7, 5),
-    param_location=110,
-    kwargs_slices=dict(
-        facecolor="#6CABDD",
-        edgecolor="#000000",
-        zorder=2,
-        linewidth=1
-    ),
+        values,
+        figsize=(7, 5),
+        param_location=110,
+        kwargs_slices=dict(
+            facecolor="#6CABDD",
+            edgecolor="#000000",
+            zorder=2,
+            linewidth=1
+        ),
+    # ... Rest of your code
+
     kwargs_params=dict(
         color="#000000",
         fontsize=12,
