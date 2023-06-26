@@ -239,8 +239,8 @@ with row2_2:
     plt.savefig('pizza.png',dpi=500,bbox_inches = 'tight')
     st.pyplot(fig)
     #create  a dataframe for the average of the selected player "Pos"
-    numeric_pl_df = pl_df._get_numeric_data()
-    avg_df = numeric_pl_df.groupby('Pos').mean()
+    avg_df = pl_df.groupby('Pos').mean()
+
 
     #avg_df = pl_df.groupby('Pos').mean()
     #avg_df
