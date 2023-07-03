@@ -238,6 +238,8 @@ with row2_2:
 
     plt.savefig('pizza.png',dpi=500,bbox_inches = 'tight')
     st.pyplot(fig)
+
+    st.write(pl_df)
     #create  a dataframe for the average of the selected player "Pos"
     avg_df = pl_df.groupby('Pos').mean()
 
