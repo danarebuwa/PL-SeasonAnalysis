@@ -96,7 +96,10 @@ df = pl_df[pl_df['Squad'].str.contains('Arsenal')]
 # Calculate the averages based on the player's position for columns starting from the 8th one
 average_columns = pi_df.columns[7:]
 pi_df_avg = pi_df[['Pos'] + list(average_columns)]
-player_df_avg = pi_df_avg.groupby('Pos').mean().reset_index()
+#player_df_avg = pi_df_avg.groupby('Pos').mean().reset_index()
+columns_to_drop = ['Rk','Age','90s','Born']
+player_df_avg = player_df_avg.drop(columns=[col for col in columns_to_drop if col in player_df_avg.columns], axis=1)
+
 
 #drop the following columns from player_df_avg "Rk", "Age", "90s","Pos","Pk","PKatt"
 player_df_avg = player_df_avg.drop(columns=['Rk','Age','90s','Born'], axis=1)
