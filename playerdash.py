@@ -250,32 +250,6 @@ with row2_2:
     st.pyplot(fig)
 
 
-
-
-    #avg_df = pl_df.groupby('Pos').mean()
-    #avg_df
-    #show only selected player pos avg_df
-    player_df_avg = pi_df_avg.groupby('Pos').mean()
-    #make index of player_df_avg into a column
-    player_df_avg.reset_index(inplace=True)
-    #rename index to Pos
-    player_df_avg.rename(columns={'index': 'Pos'}, inplace=True)
-
-    #drop the followinfg columns from player_df "Rk", "Nation", "Squad", "Age", "90s","Pos","Pk","PKatt"
-    #player_df = player_df.drop(columns=['Rk','Nation','Squad','Age','90s','Matches','Born'], axis=1)
-
-
-    #drop the following columns from player_df_avg "Rk", "Nation", "Squad", "Age", "90s","Pos","Pk","PKatt"
-    player_df_avg = player_df_avg.drop(columns=['Rk','Age','90s','Born'], axis=1)
-    #create a column in player_avg_df called "Player"
-    player_df_avg['Player'] = 'Average'
-   
-    #show the selected player Pos in player_df_avg
-    player_df_avg = player_df_avg[player_df_avg['Pos'] == player_df['Pos'].iloc[0]]
-    #player_df_avg
-
-
-
 #create a third row
 st.markdown('<h1 style="font-size: 1.5rem;">Scoring Potential </h1>', unsafe_allow_html=True)
 row4_1, row4_spacer1, row4_2, row4_spacer2, row4_3 = st.columns(
