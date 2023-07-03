@@ -101,7 +101,7 @@ player_df_avg = pi_df_avg.groupby('Pos').mean().reset_index()
 #drop the following columns from player_df_avg "Rk", "Age", "90s","Pos","Pk","PKatt"
 player_df_avg = player_df_avg.drop(columns=['Rk','Age','90s','Born'], axis=1)
 #create a column in player_avg_df called "Player"
-player_df_avg['Player'] = 'Average
+player_df_avg['Player'] = 'Average'
 
 st.markdown("<style> .reportview-container .main .block-container { width: 100%; } </style>", unsafe_allow_html=True)
 #create a sidebar that allows you to select a player and season to view
