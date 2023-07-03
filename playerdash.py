@@ -245,10 +245,6 @@ with row2_2:
     )
 
     plt.savefig('pizza.png',dpi=500,bbox_inches = 'tight')
-    st.pyplot(fig)
-
-    #create  a dataframe for the average of the selected player "Pos"
-    avg_df = pl_df.groupby('Pos').mean()
 
     # Define the columns for which you want to compute the averages
     average_columns = pi_df.columns[7:]
@@ -266,7 +262,7 @@ with row2_2:
     #avg_df = pl_df.groupby('Pos').mean()
     #avg_df
     #show only selected player pos avg_df
-    player_df_avg = avg_df.groupby('Pos').mean()
+    player_df_avg = pi_df_avg.groupby('Pos').mean()
     #make index of player_df_avg into a column
     player_df_avg.reset_index(inplace=True)
     #rename index to Pos
