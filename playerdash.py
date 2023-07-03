@@ -75,10 +75,6 @@ pi_df = pi_df.drop_duplicates()
 #make Pos the second column
 pi_df = pi_df[['Player','Pos','G-PK', 'npxG','xA','Prog', 'TCmp%','CProg', '1/3','%', 'Int','Press','TklW']]
 
-# Calculate the averages based on the player's position for columns starting from the 8th one
-average_columns = pi_df.columns[7:]
-pi_df_avg = pi_df[['Pos'] + list(average_columns)]
-avg_pos_df = pi_df_avg.groupby('Pos').mean().reset_index()
 
 #remove anything with "\" and anything after it in defensivedf
 #defensivedf = defensivedf[defensivedf['Player'].str.contains("\") == False]
@@ -142,10 +138,6 @@ with row2_1, _lock:
     st.write(f'Nation: {player2["Nation"].iloc[0]}')
     st.write(f'Position: {player2["Pos"].iloc[0]}')
     st.write(f'Age: {player2["Age"].iloc[0]}')
-    
-    # Get the averages for the position of the selected player
-    selected_pos_avg = avg_pos_df[avg_pos_df['Pos'] == player2['Pos'].iloc[0]]
-    st.write(f'Average stats for this position: {selected_pos_avg}')
 
 #in the second row show player heatmap
 # ...
@@ -245,18 +237,9 @@ with row2_2:
     )
 
     plt.savefig('pizza.png',dpi=500,bbox_inches = 'tight')
+    st.pyplot(fig)
 
-    # Define the columns for which you want to compute the averages
-    average_columns = pi_df.columns[7:]
 
-    # Create a new dataframe which only includes the 'Pos' column and the columns you are interested in
-    pi_df_avg = pi_df[['Pos'] + list(average_columns)]
-
-    # Compute the averages
-    avg_pos_df = pi_df_avg.groupby('Pos').mean().reset_index()
-    
-    # Get the averages for the position of the selected player
-    selected_pos_avg = avg_pos_df[avg_pos_df['Pos'] == player2['Pos'].iloc[0]]
 
 
     #avg_df = pl_df.groupby('Pos').mean()
